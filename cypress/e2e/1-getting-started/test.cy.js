@@ -4,7 +4,7 @@ describe('Papernest Onboarding Test', () => {
     const first_name = "Aymen";
     const last_name = "BENAMOR";
     const phone_number = "0600000000";
-    const user_email = `user${Cypress._.uniqueId()}test@papernest.com`;
+    var user_email = `user${Cypress._.uniqueId()}test@papernest.com`;
   
     it('should complete the onboarding process', () => {
       cy.visit('https://app.papernest.com/onboarding?anonymous&anonymousId=test&id_text=1&destination=newspaper');
@@ -22,17 +22,22 @@ describe('Papernest Onboarding Test', () => {
   
       cy.get('#button_next').click(); // Handle cookie banner
       cy.get('.banner-container__agree').click();
-  
+      cy.wait(3000);
       cy.get('#offer_poste_6').click();
      
-  
+     
       cy.get('#user\\.email').type(user_email);
+      
       cy.get('#user\\.phone_number').type(phone_number);
+      
       cy.get('#user\\.civility-mister').click();
+      
       cy.get('#user\\.first_name').type(first_name);
+      
       cy.get('#user\\.last_name').type(last_name);
   
-      cy.wait(3000); // Wait for the next button to become clickable
+       // Wait for the next button to become clickable
+       cy.wait(5000);
       cy.get('#button_next').click();
   
       cy.get('#poste-subscription\\.confirmation_code_destination-post_office').click();
@@ -47,6 +52,7 @@ describe('Papernest Onboarding Test', () => {
   
       // Take a screenshot
       cy.screenshot('screenshot');
+      
     });
   });
   
