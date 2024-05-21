@@ -4,7 +4,7 @@ describe('Papernest Onboarding Test', () => {
     const first_name = "Aymen";
     const last_name = "BENAMOR";
     const phone_number = "0600000000";
-    var user_email = `user${Cypress._.uniqueId()}test@papernest.com`;
+    var user_email = `user${Date.now()}test@papernest.com`;
   
     it('should complete the onboarding process', () => {
       cy.visit('https://app.papernest.com/onboarding?anonymous&anonymousId=test&id_text=1&destination=newspaper');
@@ -25,9 +25,9 @@ describe('Papernest Onboarding Test', () => {
       cy.wait(3000);
       cy.get('#offer_poste_6').click();
      
-     
-      cy.get('#user\\.email').type(user_email);
       
+      cy.get('#user\\.email').type(user_email);
+    
       cy.get('#user\\.phone_number').type(phone_number);
       
       cy.get('#user\\.civility-mister').click();
@@ -37,7 +37,7 @@ describe('Papernest Onboarding Test', () => {
       cy.get('#user\\.last_name').type(last_name);
   
        // Wait for the next button to become clickable
-       cy.wait(5000);
+       cy.wait(3000);
       cy.get('#button_next').click();
   
       cy.get('#poste-subscription\\.confirmation_code_destination-post_office').click();
